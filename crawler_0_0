@@ -17,10 +17,7 @@ for i in range(len(url_array)):
 
     if i == len(library):
         filename = str(i + 1) + '.txt'
-        #file = open('scripts/' + filename, "w+") ------- VERY IMPORTANT CODE!!!!!!!!!!
-        #file.close()
         library += ['data/' + filename]
 
-#file is made automatically!
     with open(library[i], 'w', encoding='utf8') as file:
         file.write(main_information.text)
