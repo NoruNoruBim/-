@@ -75,12 +75,9 @@ while i != len(s):
         if l_1 == 0:
             break
 
-set_1 = set()
 for word in arr:
     p = morph.parse(word.lower())[0].normal_form
     if p in index.keys():
         print(word, index[p])
-        for i in index[p]:
-            set_1.update({i})
     else:
         print('None')
