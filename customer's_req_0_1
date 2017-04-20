@@ -7,12 +7,10 @@ arr = []
 while word != 'done':
     request = input().split()
     with open("url's.txt", 'a') as online:
-        with open('words.txt', 'a') as offline:
-            for word in request:
-                if word != 'done':
-                    arr += [word]
-                    online.write('\n' + 'https://ru.wikipedia.org/wiki/' + word)
-                    offline.write(word + '\n')
+        for word in request:
+            if word != 'done':
+                arr += [word]
+                online.write('\n' + 'https://ru.wikipedia.org/wiki/' + word)
 
 
 index = dict()
@@ -75,9 +73,21 @@ while i != len(s):
         if l_1 == 0:
             break
 
+
+set_1 = set()
+set_2 = set()
+for i in index.values():
+    for j in i:
+        set_1.update({j})
+
 for word in arr:
     p = morph.parse(word.lower())[0].normal_form
     if p in index.keys():
-        print(word, index[p])
-    else:
-        print('None')
+        #print(word, index[p])
+        for i in index[p]:
+            set_2.update({i})
+        set_1 = set_1.intersection(set_2)
+    #else:
+        #print('None')
+
+print('Your phrase is in these files:\n', set_1)
